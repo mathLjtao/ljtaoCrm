@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.domain" >
+	<class name="LinkMan" table="cst_linkman" >
+		<id name="lkm_id"  >
+			<generator class="native"></generator>
+		</id>
+		<property name="lkm_gender" column="lkm_gender" ></property>
+		<property name="lkm_name" column="lkm_name" ></property>
+		<property name="lkm_phone" column="lkm_phone" ></property>
+		<property name="lkm_email" column="lkm_email" ></property>
+		<property name="lkm_qq" column="lkm_qq" ></property>
+		<property name="lkm_mobile" column="lkm_mobile" ></property>
+		<property name="lkm_memo"  ></property>
+		<property name="lkm_position"  ></property>
+		<!-- 属性名和列名一样可以去掉column -->
+		<!-- 多对一关系 -->
+		<many-to-one name="customer" column="lkm_cust_id" class="Customer"></many-to-one>
+	</class>
+	
+</hibernate-mapping>
