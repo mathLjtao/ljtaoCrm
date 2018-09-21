@@ -57,6 +57,9 @@
 		 -->
 		<mapping resource="com/domain/Customer.hbm.xml" />
 		<mapping resource="com/domain/LinkMan.hbm.xml" />
+		<mapping resource="com/domain/User.hbm.xml" />
+		<mapping resource="com/domain/SaleVisit.hbm.xml" />
+		<mapping resource="com/domain/BaseDict.hbm.xml" />
 		
 	</session-factory>
 </hibernate-configuration>
