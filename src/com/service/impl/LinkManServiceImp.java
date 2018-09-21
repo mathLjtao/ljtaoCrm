@@ -1,5 +1,7 @@
 package com.service.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -28,6 +30,14 @@ public class LinkManServiceImp implements LinkManService {
 			tx.rollback();
 		}
 		tx.commit();
+	}
+	public List<LinkMan> getAll() {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtils.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		List<LinkMan> llm=lmd.getAll();
+		tx.commit();
+		return llm;
 	}
 	
 }

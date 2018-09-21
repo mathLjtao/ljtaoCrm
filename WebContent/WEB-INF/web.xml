@@ -45,4 +45,14 @@
     <servlet-name>AddLinkmanServlet</servlet-name>
     <url-pattern>/AddLinkmanServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListLinkmanServlet</display-name>
+    <servlet-name>ListLinkmanServlet</servlet-name>
+    <servlet-class>com.web.ListLinkmanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListLinkmanServlet</servlet-name>
+    <url-pattern>/ListLinkmanServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
