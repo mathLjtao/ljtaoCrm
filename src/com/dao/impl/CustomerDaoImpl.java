@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 
 import com.dao.CustomerDao;
 import com.domain.Customer;
@@ -44,6 +45,15 @@ public class CustomerDaoImpl implements CustomerDao {
 		Session session=HibernateUtils.getCurrentSession();
 		Customer c=(Customer)session.get(Customer.class, id);
 		return c;
+	}
+
+	@Override
+	public List<Customer> getAll(DetachedCriteria dc) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Criteria c = dc.getExecutableCriteria(session);
+		return c.list();
+		
 	}
 
 }

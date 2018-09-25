@@ -2,6 +2,8 @@ package com.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import com.domain.Customer;
 
 
@@ -12,5 +14,7 @@ public interface CustomerService {
 	List<Customer> getListCustomer();
 
 	Customer getById(Long id);
+
+	List<Customer> getAll(DetachedCriteria dc);
 
 }

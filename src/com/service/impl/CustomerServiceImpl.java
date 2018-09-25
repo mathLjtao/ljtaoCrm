@@ -8,8 +8,10 @@ import java.util.List;
 
 
 
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 import org.junit.Test;
 
 import com.dao.CustomerDao;
@@ -68,6 +70,18 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getById(Long id) {
 		// TODO Auto-generated method stub
 		return customerDao.getById(id);
+	}
+
+	@Override
+	public List<Customer> getAll(DetachedCriteria dc) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction ts=session.beginTransaction();
+		List<Customer>  list=null;
+		list=customerDao.getAll(dc);
+		ts.commit();
+		return list;
+		
 	}
 
 }

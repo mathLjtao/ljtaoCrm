@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 import com.domain.Customer;
 import com.service.CustomerService;
 import com.service.impl.CustomerServiceImpl;
@@ -18,7 +21,12 @@ public class ListCustomerServlet extends HttpServlet {
 		
 		CustomerService sc=new CustomerServiceImpl();
 		List<Customer> list=null;
-		list=sc.getListCustomer();
+		String cust_name=req.getParameter("cust_name");
+		DetachedCriteria dc=DetachedCriteria.forClass(Customer.class);
+		if(cust_name!=null && !"".equals(cust_name)){
+			dc.add(Restrictions.like("cust_name","%"+cust_name+"%"));
+		}
+		list=sc.getAll(dc);
 		
 		req.setAttribute("listCustomer", list);
 		
