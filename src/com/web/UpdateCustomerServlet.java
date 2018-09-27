@@ -11,31 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.domain.Customer;
-import com.domain.LinkMan;
 import com.service.CustomerService;
-import com.service.LinkManService;
 import com.service.impl.CustomerServiceImpl;
-import com.service.impl.LinkManServiceImp;
 
-public class AddLinkmanServlet extends HttpServlet {
-	private LinkManService lms=new LinkManServiceImp();
-	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+public class UpdateCustomerServlet extends HttpServlet {
+	private CustomerService cs  = new CustomerServiceImpl();
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		Customer c=new Customer();
 		
-		LinkMan lm=new LinkMan();
 		try {
-			BeanUtils.populate(lm, req.getParameterMap());
+			BeanUtils.populate(c, req.getParameterMap());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		lms.saveLinkMan(lm);
-		res.sendRedirect(req.getContextPath()+"/ListLinkmanServlet");
-		
+		} 
+		System.out.println("web"+c.toString());
+		cs.update(c);
+		res.sendRedirect(req.getContextPath()+"/ListCustomerServlet");
 		
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

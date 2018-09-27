@@ -16,6 +16,9 @@ import com.utils.HibernateUtils;
 public class CustomerDaoImpl implements CustomerDao {
 
 	public void save(Customer c) {
+		/*
+		 * 如果开启了 Session session=HibernateUtils.getCurrentSession();
+		 * 与线程同步的session就不能开启下面个，要不然会报错
 		SessionFactory sf=HibernateUtils.getSessionFactory();
 		//1 获得session
 		Session session = sf.openSession();
@@ -28,7 +31,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		//5 关闭资源
 		session.close();
 		sf.close();
-		
+		*/
+		Session session=HibernateUtils.getCurrentSession();
+		session.save(c);
 	}
 
 	@Override
@@ -43,8 +48,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Customer getById(Long id) {
 		// TODO Auto-generated method stub
 		Session session=HibernateUtils.getCurrentSession();
-		Customer c=(Customer)session.get(Customer.class, id);
-		return c;
+		return session.get(Customer.class, id);
 	}
 
 	@Override
@@ -54,6 +58,22 @@ public class CustomerDaoImpl implements CustomerDao {
 		Criteria c = dc.getExecutableCriteria(session);
 		return c.list();
 		
+	}
+	
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		//先获得数据后删除
+		session.delete(session.get(Customer.class, id));
+	}
+
+	@Override
+	public void update(Customer c) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		System.out.println(c.toString());
+		session.update(c);
 	}
 
 }

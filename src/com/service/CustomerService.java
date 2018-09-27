@@ -17,4 +17,11 @@ public interface CustomerService {
 
 	List<Customer> getAll(DetachedCriteria dc);
 
+
+	void deleteById(Long cust_id);
+
+	void update(Customer c);
+
+	Customer getByIdNoTransaction(Long id);
+
 }

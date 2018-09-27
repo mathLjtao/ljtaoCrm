@@ -27,7 +27,10 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public void save(Customer c) {
 		//调用Dao保存客户
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction ts=session.beginTransaction();
 		customerDao .save(c);
+		ts.commit();
 	}
 
 	@Override
@@ -69,7 +72,18 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getById(Long id) {
 		// TODO Auto-generated method stub
-		return customerDao.getById(id);
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Customer c = customerDao.getById(id);
+		tx.commit();
+		return c;
+	}
+	@Override
+	//用于其他service中的一些方法中已经开启事务的，并引用这个方法的
+	public Customer getByIdNoTransaction(Long id) {
+		
+		Customer c = customerDao.getById(id);
+		return c;
 	}
 
 	@Override
@@ -82,6 +96,25 @@ public class CustomerServiceImpl implements CustomerService {
 		ts.commit();
 		return list;
 		
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		customerDao.deleteById(id);
+		tx.commit();
+				
+	}
+
+	@Override
+	//更新客户
+	public void update(Customer c) {
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		customerDao.update(c);
+		tx.commit();
 	}
 
 }

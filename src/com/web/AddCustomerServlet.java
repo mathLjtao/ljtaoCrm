@@ -18,8 +18,6 @@ import com.service.impl.CustomerServiceImpl;
  * Servlet implementation class AddCustomerServlet
  */
 public class AddCustomerServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
 	private CustomerService customerService  = new CustomerServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +31,7 @@ public class AddCustomerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		//2 调用Service保存客户
-		customerService  .save(c);
+		customerService.save(c);
 		//3 重定向到客户列表
 		response.sendRedirect(request.getContextPath()+"/ListCustomerServlet");
 	}
