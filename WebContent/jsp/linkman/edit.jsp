@@ -48,7 +48,7 @@
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<tr>
 								<td>所属客户：</td>
-								<td colspan="3"><input type="text" name="cust_id" style="WIDTH: 180px" value="${linkman.cstCustomer.cust_id}" /></td>
+								<td colspan="3"><input type="text" name="cust_id" style="WIDTH: 180px" value="${linkman.customer.cust_id}" /></td>
 							</tr>
 							<TR>
 								<td>联系人名称：</td>
@@ -58,9 +58,16 @@
 								</td>
 								<td>联系人性别：</td>
 								<td>
-								<input type="radio" value="1" name="lkm_gender" <c:if test="${linkman.lkm_gender=='1' }">checked</c:if>>男
-								
-								<input type="radio" value="2" name="lkm_gender" <c:if test="${linkman.lkm_gender=='2' }">checked</c:if>>女
+								<%-- 原因：char 类型的数据进行比较时，需要先把它转换成ASCII码对应的十进制，再进行比较。
+										提示：char类型 0-9 对应 ASCII十进制  48-57 ；     A-Z : 65 - 90   ;      a-z : 97-122  (这些时比较常用的)
+										解决方案：
+										<c:if test="${deptInfo.sts eq '48' }" >有效</c:if>
+										<c:if test="${deptInfo.sts eq '49' }" >无效</c:if>
+										---------------------
+										本文来自 Query_321 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/query_321/article/details/77943323?utm_source=copy 
+										 --%>
+								<input type="radio" value="1" name="lkm_gender" <c:if test="${linkman.lkm_gender eq '49' }">checked</c:if>>男
+								<input type="radio" value="2" name="lkm_gender" <c:if test="${linkman.lkm_gender eq '50' }">checked</c:if>>女
 								</td>
 							</TR>
 							<TR>

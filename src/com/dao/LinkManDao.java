@@ -16,4 +16,6 @@ public interface LinkManDao {
 	public void deleteById(Long lkm_id);
 
 	public LinkMan getById(Long lkm_id);
+
+	public void update(LinkMan lm);
 }

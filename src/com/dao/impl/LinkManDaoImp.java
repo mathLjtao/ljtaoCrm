@@ -50,4 +50,11 @@ public class LinkManDaoImp implements LinkManDao {
 		return s.get(LinkMan.class, lkm_id);
 	}
 
+	@Override
+	public void update(LinkMan lm) {
+		// TODO Auto-generated method stub
+		Session s=HibernateUtils.getCurrentSession();
+		s.update(lm);
+	}
+
 }

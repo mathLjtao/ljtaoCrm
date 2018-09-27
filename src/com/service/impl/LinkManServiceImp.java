@@ -66,5 +66,20 @@ public class LinkManServiceImp implements LinkManService {
 		tx.commit();
 		return lm;
 	}
+	@Override
+	public void update(LinkMan lm) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		try{
+			Customer c=cs.getByIdNoTransaction(lm.getCust_id());
+			lm.setCustomer(c);
+			lmd.update(lm);
+		}catch(Exception e){
+			e.printStackTrace();
+			tx.rollback();
+		}
+		tx.commit();
+	}
 	
 }
