@@ -15,9 +15,9 @@
 </HEAD>
 <BODY>
 	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/linkmanServlet?method=editsubmit"
+		action="${pageContext.request.contextPath }/UpdateLinkmanServlet"
 		method=post>
-		<input type="hidden" name="lkmId" value="${linkman.lkmId }"/>
+		<input type="hidden" name="lkm_id" value="${linkman.lkm_id }"/>
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -48,31 +48,38 @@
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<tr>
 								<td>所属客户：</td>
-								<td colspan="3"><input type="text" name="custId" style="WIDTH: 180px" value="${linkman.cstCustomer.custId}" /></td>
+								<td colspan="3"><input type="text" name="cust_id" style="WIDTH: 180px" value="${linkman.customer.cust_id}" /></td>
 							</tr>
 							<TR>
 								<td>联系人名称：</td>
 								<td>
 								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="lkmName" value="${linkman.lkmName}" >
+														style="WIDTH: 180px" maxLength=50 name="lkm_name" value="${linkman.lkm_name}" >
 								</td>
 								<td>联系人性别：</td>
 								<td>
-								<input type="radio" value="1" name="lkmGender" <c:if test="${linkman.lkmGender=='1' }">checked</c:if>>男
-								
-								<input type="radio" value="2" name="lkmGender" <c:if test="${linkman.lkmGender=='2' }">checked</c:if>>女
+								<%-- 原因：char 类型的数据进行比较时，需要先把它转换成ASCII码对应的十进制，再进行比较。
+										提示：char类型 0-9 对应 ASCII十进制  48-57 ；     A-Z : 65 - 90   ;      a-z : 97-122  (这些时比较常用的)
+										解决方案：
+										<c:if test="${deptInfo.sts eq '48' }" >有效</c:if>
+										<c:if test="${deptInfo.sts eq '49' }" >无效</c:if>
+										---------------------
+										本文来自 Query_321 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/query_321/article/details/77943323?utm_source=copy 
+										 --%>
+								<input type="radio" value="1" name="lkm_gender" <c:if test="${linkman.lkm_gender eq '49' }">checked</c:if>>男
+								<input type="radio" value="2" name="lkm_gender" <c:if test="${linkman.lkm_gender eq '50' }">checked</c:if>>女
 								</td>
 							</TR>
 							<TR>
 								<td>联系人办公电话 ：</td>
 								<td>
 								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="lkmPhone" value="${linkman.lkmPhone}">
+														style="WIDTH: 180px" maxLength=50 name="lkm_hone" value="${linkman.lkm_phone}">
 								</td>
 								<td>联系人手机 ：</td>
 								<td>
 								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="lkmMobile" value="${linkman.lkmMobile}">
+														style="WIDTH: 180px" maxLength=50 name="lkm_mobile" value="${linkman.lkm_mobile}">
 								</td>
 							</TR>
 							<tr>

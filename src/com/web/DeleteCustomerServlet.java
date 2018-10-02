@@ -1,7 +1,6 @@
 package com.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,23 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
-import com.domain.LinkMan;
-import com.service.LinkManService;
-import com.service.impl.LinkManServiceImp;
+import com.domain.Customer;
+import com.service.CustomerService;
+import com.service.impl.CustomerServiceImpl;
 
-public class ListLinkmanServlet extends HttpServlet {
-	private LinkManService lls=new LinkManServiceImp();
+public class DeleteCustomerServlet extends HttpServlet {
+	private CustomerService customerService  = new CustomerServiceImpl();
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		String lkm_name=req.getParameter("lkm_name");
-		DetachedCriteria dc=DetachedCriteria.forClass(LinkMan.class);
-		if(lkm_name!=null && !"".equals(lkm_name)){
-			dc.add(Restrictions.like("lkm_name","%"+lkm_name+"%"));
-		}
-		
-		List<LinkMan> listLm=lls.getAll(dc);
-		req.setAttribute("list", listLm);
-		req.getRequestDispatcher("/jsp/linkman/list.jsp").forward(req, res);
+		Long cust_id=Long.parseLong(req.getParameter("custId"));	
+		customerService.deleteById(cust_id);
+		res.sendRedirect(req.getContextPath()+"/ListCustomerServlet");
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

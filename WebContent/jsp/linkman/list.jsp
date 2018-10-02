@@ -24,7 +24,7 @@
 </HEAD>
 <BODY>
 	<FORM id="customerForm" name="customerForm"
-		action="${pageContext.request.contextPath }/linkmanServlet?method=list"
+		action="${pageContext.request.contextPath }/ListLinkmanServlet"
 		method=post>
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
@@ -63,7 +63,7 @@
 												<TR>
 													<TD>联系人名称：</TD>
 													<TD><INPUT class=textbox id=sChannel2
-														style="WIDTH: 80px" maxLength=50 name="lkmName"></TD>
+														style="WIDTH: 80px" maxLength=50 name="lkm_name" value="${param.lkm_name }"></TD>
 													
 													<TD><INPUT class=button id=sButton2 type=submit
 														value=" 筛选 " name=sButton2></TD>
@@ -96,9 +96,9 @@
 													<TD>${linkman.lkm_mobile }</TD>
 													
 													<TD>
-													<a href="${pageContext.request.contextPath }/linkmanServlet?method=edit&lkmId=${linkman.lkm_id}">修改</a>
+													<a href="${pageContext.request.contextPath }/GetLinkmanServlet?lkm_id=${linkman.lkm_id}">修改</a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/linkmanServlet?method=delete&lkmId=${linkman.lkm_id}">删除</a>
+													<a href="${pageContext.request.contextPath }/DeleteLinkmanServlet?lkm_id=${linkman.lkm_id}" onClick="return confirm('确定删除该联系人信息？');">删除</a>
 													</TD>
 												</TR>
 												

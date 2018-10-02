@@ -42,7 +42,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ListCustomerServlet</servlet-name>
-    <url-pattern>/listCustomer</url-pattern>
+    <url-pattern>/ListCustomerServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -63,5 +63,65 @@
   <servlet-mapping>
     <servlet-name>ListLinkmanServlet</servlet-name>
     <url-pattern>/ListLinkmanServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteCustomerServlet</display-name>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <servlet-class>com.web.DeleteCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <url-pattern>/DeleteCustomerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateCustomerServlet</display-name>
+    <servlet-name>UpdateCustomerServlet</servlet-name>
+    <servlet-class>com.web.UpdateCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCustomerServlet</servlet-name>
+    <url-pattern>/UpdateCustomerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetCustomerServlet</display-name>
+    <servlet-name>GetCustomerServlet</servlet-name>
+    <servlet-class>com.web.GetCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetCustomerServlet</servlet-name>
+    <url-pattern>/GetCustomerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateLinkmanServlet</display-name>
+    <servlet-name>UpdateLinkmanServlet</servlet-name>
+    <servlet-class>com.web.UpdateLinkmanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateLinkmanServlet</servlet-name>
+    <url-pattern>/UpdateLinkmanServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetLinkmanServlet</display-name>
+    <servlet-name>GetLinkmanServlet</servlet-name>
+    <servlet-class>com.web.GetLinkmanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetLinkmanServlet</servlet-name>
+    <url-pattern>/GetLinkmanServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteLinkmanServlet</display-name>
+    <servlet-name>DeleteLinkmanServlet</servlet-name>
+    <servlet-class>com.web.DeleteLinkmanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteLinkmanServlet</servlet-name>
+    <url-pattern>/DeleteLinkmanServlet</url-pattern>
   </servlet-mapping>
 </web-app>

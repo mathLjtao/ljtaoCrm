@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 
 import com.dao.LinkManDao;
 import com.dao.impl.LinkManDaoImp;
@@ -22,7 +23,7 @@ public class LinkManServiceImp implements LinkManService {
 		Session session=HibernateUtils.getCurrentSession();
 		Transaction tx=session.beginTransaction();
 		try{
-			Customer c=cs.getById(lm.getCust_id());
+			Customer c=cs.getByIdNoTransaction(lm.getCust_id());
 			lm.setCustomer(c);
 			lmd.save(lm);
 		}catch(Exception e){
@@ -38,6 +39,47 @@ public class LinkManServiceImp implements LinkManService {
 		List<LinkMan> llm=lmd.getAll();
 		tx.commit();
 		return llm;
+	}
+	@Override
+	public List<LinkMan> getAll(DetachedCriteria dc) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		List<LinkMan> llm=lmd.getAll(dc);
+		tx.commit();
+		return llm;
+	}
+	@Override
+	public void deleteById(Long lkm_id) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		lmd.deleteById(lkm_id);
+		tx.commit();
+	}
+	@Override
+	public LinkMan getById(Long lkm_id) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		LinkMan lm=lmd.getById(lkm_id);
+		tx.commit();
+		return lm;
+	}
+	@Override
+	public void update(LinkMan lm) {
+		// TODO Auto-generated method stub
+		Session session=HibernateUtils.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		try{
+			Customer c=cs.getByIdNoTransaction(lm.getCust_id());
+			lm.setCustomer(c);
+			lmd.update(lm);
+		}catch(Exception e){
+			e.printStackTrace();
+			tx.rollback();
+		}
+		tx.commit();
 	}
 	
 }

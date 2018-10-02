@@ -17,4 +17,8 @@ public interface CustomerDao {
 
 	List<Customer> getAll(DetachedCriteria dc);
 
+	void deleteById(Long id);
+
+	void update(Customer c);
+
 }
