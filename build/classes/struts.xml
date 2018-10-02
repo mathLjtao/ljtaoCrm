@@ -24,13 +24,13 @@
 	<package name="crm" namespace="/" extends="struts-default">
 		
 		
-		<action name="HelloAction" class="cn.itheima.a_hello.HelloAction" method="hello" >
+		<action name="HelloAction" class="com.web.test.HelloAction" method="hello" >
 			<!-- result元素:结果配置 
 				name属性: 标识结果处理的名称.与action方法的返回值对应.
 				type属性: 指定调用哪一个result类来处理结果,默认使用转发.
 				标签体:填写页面的相对路径
 			-->
-			<result name="success" type="dispatcher" >/hello.jsp</result>
+			<result name="success" type="dispatcher" >/test/testStruts2.jsp</result>
 		</action>
 		
 	</package>
