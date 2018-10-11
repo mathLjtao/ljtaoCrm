@@ -36,16 +36,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ListCustomerServlet</display-name>
-    <servlet-name>ListCustomerServlet</servlet-name>
-    <servlet-class>com.web.ListCustomerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ListCustomerServlet</servlet-name>
-    <url-pattern>/ListCustomerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>AddLinkmanServlet</display-name>
     <servlet-name>AddLinkmanServlet</servlet-name>
     <servlet-class>com.web.AddLinkmanServlet</servlet-class>

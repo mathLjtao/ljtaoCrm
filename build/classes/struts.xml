@@ -5,11 +5,11 @@
 <struts>
 	<!-- i18n:国际化. 解决post提交乱码 -->
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
-	<!-- 指定反问action时的后缀名 
+	<!-- 指定反问action时的后缀名 ，下面这个是action
 		http://localhost:8080/struts2_day01/hello/HelloAction.do
 	-->
 	<constant name="struts.action.extension" value="action"></constant>
-	<!-- 指定struts2是否以开发模式运行
+	<!-- 指定struts2是否以开发模式运行（默认值是false）
 			1.热加载主配置.(不需要重启即可生效)
 			2.提供更多错误信息输出,方便开发时的调试
 	 -->
@@ -22,15 +22,23 @@
 	 -->
 		 
 	<package name="crm" namespace="/" extends="struts-default">
-		
+	<!-- 如果找不到action的话，默认找下面这name的action -->
+		<default-action-ref name="HelloAction"></default-action-ref>
 		
 		<action name="HelloAction" class="com.web.test.HelloAction" method="hello" >
 			<!-- result元素:结果配置 
 				name属性: 标识结果处理的名称.与action方法的返回值对应.
-				type属性: 指定调用哪一个result类来处理结果,默认使用转发.
+				type属性: 指定调用哪一个result类来处理结果,默认使用转发.（还有重定向跟其他）
 				标签体:填写页面的相对路径
 			-->
 			<result name="success" type="dispatcher" >/test/testStruts2.jsp</result>
+		</action>
+		
+		<!-- 
+		动态方法调用方式，使用通配符
+		 -->
+		<action name="CustomerAction_*" class="com.web.CustomerAction" method="{1}" >
+			<result name="listCustomer" type="dispatcher" >/jsp/customer/list.jsp</result>
 		</action>
 		
 	</package>
