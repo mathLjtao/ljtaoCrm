@@ -20,15 +20,47 @@
 		class属性: action的完整类名
 		method属性: 指定调用Action中的哪个方法来处理请求
 	 -->
-		 
+	<constant name="struts.devMode" value="true"></constant>	 
 	<package name="crm" namespace="/" extends="struts-default">
+		
+		<interceptors>
+		<!-- 1.注册拦截器 -->
+			<interceptor name="LoginIntercepter" class="com.web.intercepter.LoginIntercepter"></interceptor>
+			<!-- 2.注册拦截器栈 -->
+			<interceptor-stack name="mystack">
+			<!-- 3.自定义拦截器引入，建议放在20拦截器之前 -->
+				<interceptor-ref name="LoginIntercepter">
+					<!-- 指定不拦截的方法  -->
+					<param name="excludeMethods">login</param>
+					<!-- 指定拦截的方法,这两个方法不能同时存在；要么指定拦截，要么指定不拦截的
+					<param name="includeMethods">add,delete</param>-->
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 4.指定默认拦截器栈 -->
+		<default-interceptor-ref name="mystack"></default-interceptor-ref>
+		
+		
+	
 	<!-- 如果找不到action的话，默认找下面这name的action -->
 		<default-action-ref name="HelloAction"></default-action-ref>
+		
+		<!-- 定义全局结果集 -->
+		<global-results >
+			<result name="toLogin" type="redirect">/login.jsp</result>
+		</global-results>
+		
+		<!-- 设置异常处理，出现这个异常的话，转到‘loginError’ -->
+		<global-exception-mappings>
+			<exception-mapping result="loginError" exception="java.lang.RuntimeException"></exception-mapping>
+		</global-exception-mappings>
 		
 		<action name="HelloAction" class="com.web.test.HelloAction" method="hello" >
 			<!-- result元素:结果配置 
 				name属性: 标识结果处理的名称.与action方法的返回值对应.
 				type属性: 指定调用哪一个result类来处理结果,默认使用转发.（还有重定向跟其他）
+					dispatcher:转发； redirect:重定向； chain:转发到action；redirectAction:重定向到action
 				标签体:填写页面的相对路径
 			-->
 			<result name="success" type="dispatcher" >/test/testStruts2.jsp</result>
@@ -39,6 +71,15 @@
 		 -->
 		<action name="CustomerAction_*" class="com.web.CustomerAction" method="{1}" >
 			<result name="listCustomer" type="dispatcher" >/jsp/customer/list.jsp</result>
+			<result name="toListCustomer" type="redirectAction" >
+				<param name="actionName">CustomerAction_listCustomer</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="UserAction_*" class="com.web.UserAction" method="{1}" >
+			<result name="toIndex" type="redirect" >/index.htm</result>
+			<result name="loginError" type="redirect" >/login.jsp</result>
 		</action>
 		
 	</package>

@@ -1,5 +1,6 @@
 package com.domain;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,27 +15,18 @@ public class User {
 	  PRIMARY KEY (`user_id`)
 	) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 	 */
-	private Long user_id;
+	private BigInteger user_id;
 	private String user_code;
 	private String user_name;
 	private String user_password;
 	private Character user_state;
 	
-	//表达客户与拜访记录的一对多
-	private Set<SaleVisit> saleVisits = new HashSet<SaleVisit>();
 	
 	
-	
-	public Set<SaleVisit> getSaleVisits() {
-		return saleVisits;
-	}
-	public void setSaleVisits(Set<SaleVisit> saleVisits) {
-		this.saleVisits = saleVisits;
-	}
-	public Long getUser_id() {
+	public BigInteger getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(Long user_id) {
+	public void setUser_id(BigInteger user_id) {
 		this.user_id = user_id;
 	}
 	public String getUser_code() {

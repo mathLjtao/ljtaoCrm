@@ -1,5 +1,8 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
-<HTML xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
+<HTML >
 <HEAD>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
 <STYLE type=text/css>
@@ -11,9 +14,22 @@ TD {
 }
 </STYLE>
 
-<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR>
+<script type="text/javascript">
+	//设置login.jsp  成单独一个界面，不包含在其他窗口（框架）里面
+	window.onload=function(){
+		if(window.parent!=window){
+			window.parent.location.href="${pageContext.request.contextPath}/login.jsp";
+		}
+		
+	}
+
+</script>
+
+</HEAD>
+
 <BODY>
-<FORM id=form1 name=form1 onsubmit="javascript:return WebForm_OnSubmit();" method=post>
+<form name="forml" id="forml" action="${pageContext.request.contextPath }/UserAction_login.action" method="post">
 
 <DIV id=UpdatePanel1>
 <DIV id=div1 
@@ -24,6 +40,7 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
 
 <DIV>&nbsp;&nbsp; </DIV>
 <DIV>
+
 <TABLE cellSpacing=0 cellPadding=0 width=900 align=center border=0>
   <TBODY>
   <TR>
@@ -43,14 +60,14 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
               <TR>
                 <TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
                 <TD style="HEIGHT: 28px" width=150><INPUT id=txtName 
-                  style="WIDTH: 130px" name=txtName></TD>
+                  style="WIDTH: 130px" name="user_code"></TD>
                 <TD style="HEIGHT: 28px" width=370><SPAN 
                   id=RequiredFieldValidator3 
                   style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN></TD></TR>
               <TR>
                 <TD style="HEIGHT: 28px">登录密码：</TD>
                 <TD style="HEIGHT: 28px"><INPUT id=txtPwd style="WIDTH: 130px" 
-                  type=password name=txtPwd></TD>
+                  type=password name="user_password"></TD>
                 <TD style="HEIGHT: 28px"><SPAN id=RequiredFieldValidator4 
                   style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入密码</SPAN></TD></TR>
               <TR>
@@ -66,12 +83,13 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
                 <TD></TD>
                 <TD><INPUT id=btn 
                   style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
-                  onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("btn", "", true, "", "", false, false))' 
                   type=image src="images/login_button.gif" name=btn> 
               </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
   <TR>
     <TD><IMG src="images/login_3.jpg" 
 border=0></TD></TR></TBODY></TABLE></DIV></DIV>
+<s:property value="exception.message"/>
+<s:debug></s:debug>
 
 
 </FORM></BODY></HTML>

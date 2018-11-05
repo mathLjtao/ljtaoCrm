@@ -8,11 +8,22 @@ import org.hibernate.criterion.Restrictions;
 
 import com.domain.Customer;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import com.service.CustomerService;
 import com.service.impl.CustomerServiceImpl;
 
-public class CustomerAction extends ActionSupport{
+public class CustomerAction extends ActionSupport implements ModelDriven<Customer>{
 	private CustomerService sc=new CustomerServiceImpl();
+	
+	
+	private Customer c=new Customer();
+	//添加客户
+	public String add() throws  Exception{
+		System.out.println(c.getCust_name());
+		sc.save(c);
+		return "toListCustomer";
+	}
+	//显示客户列表
 	public String  listCustomer () throws Exception{
 		List<Customer> list=null;
 		String cust_name=ServletActionContext.getRequest().getParameter("cust_name");
@@ -25,4 +36,10 @@ public class CustomerAction extends ActionSupport{
 		ServletActionContext.getRequest().setAttribute("listCustomer", list);
 		return "listCustomer";
 	} 
+	
+	@Override
+	public Customer getModel() {
+		// TODO Auto-generated method stub
+		return c;
+	}
 }
