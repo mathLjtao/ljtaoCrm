@@ -14,6 +14,10 @@ public class LoginIntercepter extends MethodFilterInterceptor{
 	@Override
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
 		System.out.println("进入到LoginIntercepter拦截器中");
+		return invocation.invoke();
+		
+		//下面这些是用于登陆拦截的，用户只用登陆成功才能访问其他action
+		/*
 		//获得session域
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		//获得登陆标识
@@ -22,8 +26,9 @@ public class LoginIntercepter extends MethodFilterInterceptor{
 			return "toLogin";
 		}
 		else{
-			return invocation.invoke();
+			
 		}
+		*/
 	}
 
 }

@@ -20,7 +20,7 @@ public class UserAction extends ActionSupport implements  ModelDriven<User>{
 		}
 		else{
 			System.out.println(u);
-			if(u.getUser_password()==user.getUser_password()){
+			if(user.getUser_password().equals(u.getUser_password())){
 				System.out.println("用户存在,密码正确");
 			}
 			else{

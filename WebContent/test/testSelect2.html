@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>餐饮类别设置</title>
+</head>
+<body>
+     <form name="mealtypesetform" id="mealtypesetform" action="http://www.baidu.com">
+       <table align="center" border="1" cellspacing="0" id="mealtypesettable">
+         <caption>餐饮类型设置</caption>
+         <tr>
+           <td>选择窗口
+           </td>
+           <td> <select name="WD">
+                     <option value="WD1">窗口一</option>
+                     <option value="WD2">窗口二</option>
+                     <option value="WD3">窗口三</option>
+                     <option value="WD4">窗口四</option>
+                            <option value="WD5">窗口五</option>
+                  </select> </td>
+         </tr>
+         <tr>
+           <td>选择类型1</td>
+           <td ><select name="FT">
+                     <option value="FT1">都提供</option>
+                            <option value="FT2">面点</option>
+                     <option value="FT3">小炒</option>
+                     <option value="FT4">凉菜</option>
+                            <option value="FT5">汤</option>
+                            <option value="FT6">粥</option>
+                  </select> </td>
+         </tr>
+         <tr>
+           <td>选择类型2</td>
+           <td ><select name="FT">
+                           <option value="FT1">都提供</option>
+                           <option value="FT2">面点</option>
+                           <option value="FT3">小炒</option>
+                           <option value="FT4">凉菜</option>
+                           <option value="FT5">汤</option>
+                           <option value="FT6">粥</option>
+                  </select> </td>
+         </tr>
+         <tr>
+           <td>选择类型3</td>
+           <td ><select name="FT">
+                          <option value="FT1">都提供</option>
+                          <option value="FT2">面点</option>
+                          <option value="FT3">小炒</option>
+                          <option value="FT4">凉菜</option>
+                          <option value="FT5">汤</option>
+                          <option value="FT6">粥</option>
+                  </select> </td>
+         </tr>
+       </table>
+       <br />
+         <input type="button" onclick="appendRow()" value="添加" style="width:70px; margin-left:5px"/>
+         <input type="button" onclick="deleteRow()" value="删除" style="width:70px; margin-left:10px"/>
+         <input type="submit" value="提交" style="width:70px; margin-left:10px"/>
+     </form>
+   </div>
+   <script type="text/javascript">
+       function appendRow() { //获取table的id
+           var m=document.getElementById("mealtypesettable");
+           //在表格的最后插入行
+           var x=m.insertRow(m.rowIndex);
+           //获取最后一行第一个表格元素，即<td></td>
+           var y=x.insertCell(0);
+           //获取最后一行第二个表格元素
+           var z=x.insertCell(1);
+           //获取表格的行数
+           var n=m.rows.length-1;
+           y.innerHTML="选择类型"+n;
+           //设置最后一行第二个表格元素的id
+           z.id="hopeDropList"+n;
+           //创建<select></select>之间的选项，并赋值
+           var element=document.createElement("select");
+           element.options[0]=new Option("都提供");
+           element.options[1]=new Option("面点");
+           element.options[2]=new Option("小炒");
+           element.options[3]=new Option("凉菜");
+           element.options[4]=new Option("汤");
+           element.options[5]=new Option("粥");
+           document.getElementById("hopeDropList"+n).appendChild(element);
+       } //点击删除按钮，删除最后一行
+       function deleteRow() { var t=document.getElementById("mealtypesettable");
+           if(t.rows.length>0) { t.deleteRow(t.rows.length-1);
+           } } </script>
+</body>
+</html>

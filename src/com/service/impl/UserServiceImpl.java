@@ -18,10 +18,12 @@ public class UserServiceImpl implements  UserService {
 		//提交事务
 		HibernateUtils.getCurrentSession().beginTransaction().commit();
 		if(u==null){
-			throw new RuntimeException("the user no exits！");
+			//throw new RuntimeException("the user no exits！");
+			System.out.println("the user no exits！");
 		}
 		if(!u.getUser_password().equals(user.getUser_password())){
-			throw new RuntimeException("password false！");
+			//throw new RuntimeException("password false！");
+			System.out.println("password false！");
 		}
 		
 		return u;
