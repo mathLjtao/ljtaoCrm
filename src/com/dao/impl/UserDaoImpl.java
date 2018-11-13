@@ -33,6 +33,7 @@ public class UserDaoImpl implements  UserDao {
 		*/
 		
 		
+		
 		//2 书写HQL
 		String hql = "from User where user_code = ? ";
 		//3 创建查询对象
