@@ -81,6 +81,10 @@
 			<result name="toIndex" type="redirect" >/index.htm</result>
 			<result name="loginError" type="redirect" >/login.jsp</result>
 		</action>
+		<!-- 这个主要是用来做测试的 -->
+		<action name="test_*" class="com.web.test.TestSpirng" method="{1}">
+			<result name="success" type="dispatcher" >/test/testSpring.jsp</result>
+		</action>
 		
 	</package>
 </struts>
