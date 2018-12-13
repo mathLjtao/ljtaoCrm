@@ -11,7 +11,7 @@ import com.utils.HibernateUtils;
 public class UserServiceImpl implements  UserService {
 	private UserDao ud=new UserDaoImpl();
 	@Override
-	public User login(User user) {
+	public User login(User user) throws Exception{
 		//开启事务
 		HibernateUtils.getCurrentSession().beginTransaction();
 		User u=ud.login(user);
