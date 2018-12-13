@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://www.springframework.org/schema/beans" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
 
+
+	
 	<!-- 将User对象交给spring容器管理 -->
 	<!-- Bean元素:使用该元素描述需要spring容器管理的对象
 			class属性:被管理对象的完整类名.
@@ -18,10 +26,12 @@
 			
 	  -->
 	
-	
-	<bean name="user" class="com.domain.User"></bean>
-	
-
+	<!-- 注意:Action对象作用范围一定是多例的.这样才符合struts2架构 -->
+	<bean name="user" class="com.domain.User" ></bean>
+	<bean name="userAction" class="com.web.UserAction" scope="prototype">
+		<property name="us" ref="userServiceImpl"></property>
+	</bean>
+	<bean name="userServiceImpl" class="com.service.impl.UserServiceImpl"></bean>
 	
 	<!-- 导入其他spring配置文件
 	<import resource="cn/itcast/b_create/applicationContext.xml"/>

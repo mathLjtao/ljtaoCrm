@@ -10,7 +10,12 @@ import com.service.impl.UserServiceImpl;
 
 
 public class UserAction extends ActionSupport implements  ModelDriven<User>{
-	private UserService us=new UserServiceImpl();
+	private UserService us;
+
+	public void setUs(UserService us) {
+		this.us = us;
+	}
+
 	private User user=new User();
 	public String login() throws Exception{
 		System.out.println(user.getUser_code());

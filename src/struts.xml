@@ -20,7 +20,14 @@
 		class属性: action的完整类名
 		method属性: 指定调用Action中的哪个方法来处理请求
 	 -->
-	<constant name="struts.devMode" value="true"></constant>	 
+	<constant name="struts.devMode" value="true"></constant>	
+	 
+	<!-- #  struts.objectFactory = spring	将action的创建交给spring容器	
+			struts.objectFactory.spring.autoWire = name spring负责装配Action依赖属性(这个默认是打开的，不需要配置)
+			-->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	
+	
 	<package name="crm" namespace="/" extends="struts-default">
 		
 		<interceptors>
@@ -77,7 +84,7 @@
 			</result>
 		</action>
 		
-		<action name="UserAction_*" class="com.web.UserAction" method="{1}" >
+		<action name="UserAction_*" class="userAction" method="{1}" >
 			<result name="toIndex" type="redirect" >/index.htm</result>
 			<result name="loginError" type="redirect" >/login.jsp</result>
 		</action>
