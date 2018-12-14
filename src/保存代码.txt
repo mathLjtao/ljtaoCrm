@@ -1,0 +1,35 @@
+下面这个是加在applicationContext.xml文件中，  因为hibernate.cfg.xml中已经弄好数据库连接了，所以不要下面这个
+<!-- 加载配置方案2:在spring配置中放置hibernate配置信息 -->
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
+		<!-- 将连接池注入到sessionFactory, hibernate会通过连接池获得连接 ,从连接池获取连接更新数据需要开启事务，因为不会自动帮你开启事务-->
+		<property name="dataSource" ref="dataSource" ></property>
+		<!-- 配置hibernate基本信息 -->
+		<property name="hibernateProperties">
+			<props>
+				<!--  必选配置 -->
+			<!-- 	
+				由于上面的连接从连接池获取，这里就不需要下面这些了
+				<prop key="hibernate.connection.driver_class" >com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.url" >jdbc:mysql:///crm_32</prop>
+				<prop key="hibernate.connection.username" >root</prop>
+				<prop key="hibernate.connection.password" >1234</prop> 
+				-->
+				<prop key="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</prop>
+				<!--  可选配置 -->
+				<prop key="hibernate.show_sql" >true</prop>
+				<prop key="hibernate.format_sql" >true</prop>
+				<prop key="hibernate.hbm2ddl.auto" >update</prop>
+			</props>
+		</property>
+		<!-- 引入orm元数据,指定orm元数据所在的包路径,spring会自动读取包中的所有配置 -->
+		<property name="mappingDirectoryLocations" value="classpath:com/domain" ></property>
+	</bean>
+	<!-- 指定spring读取db.properties配置 -->
+	<context:property-placeholder location="classpath:db.properties"  />
+	<!-- 1.将连接池放入spring容器 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" ></property>
+		<property name="driverClass" value="${jdbc.driverClass}" ></property>
+		<property name="user" value="${jdbc.user}" ></property>
+		<property name="password" value="${jdbc.password}" ></property>
+	</bean>
