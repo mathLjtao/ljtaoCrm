@@ -21,4 +21,9 @@ public interface CustomerDao {
 
 	void update(Customer c);
 
+	Integer getCustomerTotalCount(DetachedCriteria dc);
+
+	List<Customer> getCustomerPageList(DetachedCriteria dc, int start,
+			Integer pageSize);
+
 }

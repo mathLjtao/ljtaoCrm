@@ -8,13 +8,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 
 import com.dao.CustomerDao;
 import com.domain.Customer;
 import com.utils.HibernateUtils;
 
 public class CustomerDaoImpl implements CustomerDao {
-
+	Session session=HibernateUtils.getCurrentSession();
 	public void save(Customer c) {
 		/*
 		 * 如果开启了 Session session=HibernateUtils.getCurrentSession();
@@ -39,7 +40,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public List<Customer> getListCustomer() {
 		// TODO Auto-generated method stub
-		Session session=HibernateUtils.getCurrentSession();
 		Criteria c = session.createCriteria(Customer.class);
 		return c.list();
 	}
@@ -47,14 +47,12 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getById(Long id) {
 		// TODO Auto-generated method stub
-		Session session=HibernateUtils.getCurrentSession();
 		return session.get(Customer.class, id);
 	}
 
 	@Override
 	public List<Customer> getAll(DetachedCriteria dc) {
 		// TODO Auto-generated method stub
-		Session session=HibernateUtils.getCurrentSession();
 		Criteria c = dc.getExecutableCriteria(session);
 		return c.list();
 		
@@ -62,8 +60,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		Session session=HibernateUtils.getCurrentSession();
 		//先获得数据后删除
 		session.delete(session.get(Customer.class, id));
 	}
@@ -71,9 +67,25 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public void update(Customer c) {
 		// TODO Auto-generated method stub
-		Session session=HibernateUtils.getCurrentSession();
 		System.out.println(c.toString());
 		session.update(c);
 	}
 
+	@Override
+	public Integer getCustomerTotalCount(DetachedCriteria dc) {
+		// TODO Auto-generated method stub
+		Criteria criteria = dc.getExecutableCriteria(session);
+		criteria.setProjection(Projections.rowCount());
+		Integer i=Integer.parseInt(criteria.uniqueResult().toString());
+		dc.setProjection(null);
+		return i;
+	}
+	@Override
+	public List<Customer> getCustomerPageList(DetachedCriteria dc, int start,
+			Integer pageSize) {
+		Criteria criteria = dc.getExecutableCriteria(session);
+		criteria.setFirstResult(start);
+		criteria.setMaxResults(pageSize);
+		return criteria.list();
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 
 import com.domain.Customer;
+import com.utils.PageBean;
 
 
 public interface CustomerService {
@@ -23,5 +24,8 @@ public interface CustomerService {
 	void update(Customer c);
 
 	Customer getByIdNoTransaction(Long id);
+
+	PageBean getPageBean(DetachedCriteria dc, Integer currentPage,
+			Integer pageSize);
 
 }

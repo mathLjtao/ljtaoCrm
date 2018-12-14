@@ -23,23 +23,28 @@
 	<constant name="struts.devMode" value="true"></constant>	 
 	<package name="crm" namespace="/" extends="struts-default">
 		
-		<interceptors>
 		<!-- 1.注册拦截器 -->
-			<interceptor name="LoginIntercepter" class="com.web.intercepter.LoginIntercepter"></interceptor>
-			<!-- 2.注册拦截器栈 -->
-			<interceptor-stack name="mystack">
+		<!-- 2.注册拦截器栈 -->
 			<!-- 3.自定义拦截器引入，建议放在20拦截器之前 -->
-				<interceptor-ref name="LoginIntercepter">
-					<!-- 指定不拦截的方法  -->
-					<param name="excludeMethods">login</param>
-					<!-- 指定拦截的方法,这两个方法不能同时存在；要么指定拦截，要么指定不拦截的
+				<!-- 指定不拦截的方法  -->
+				<!-- 指定拦截的方法,这两个方法不能同时存在；要么指定拦截，要么指定不拦截的
 					<param name="includeMethods">add,delete</param>-->
+						<!-- 4.指定默认拦截器栈 -->
+		<!--<interceptors>
+			<interceptor name="LoginIntercepter" class="com.web.intercepter.LoginIntercepter"></interceptor>
+			
+			<interceptor-stack name="mystack">
+		
+				<interceptor-ref name="LoginIntercepter">
+				
+					<param name="excludeMethods">login</param>
+					
 				</interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-		<!-- 4.指定默认拦截器栈 -->
-		<default-interceptor-ref name="mystack"></default-interceptor-ref>
+	
+		<default-interceptor-ref name="mystack"></default-interceptor-ref>-->
 		
 		
 	
@@ -75,6 +80,7 @@
 				<param name="actionName">CustomerAction_listCustomer</param>
 				<param name="namespace">/</param>
 			</result>
+			<result name="pageListCustomer" type="dispatcher">/jsp/customer/pageList.jsp</result>
 		</action>
 		
 		<action name="UserAction_*" class="com.web.UserAction" method="{1}" >
