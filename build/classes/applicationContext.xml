@@ -7,6 +7,8 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 http://www.springframework.org/schema/context 
 http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
 	
+	
+	
 	<!-- 将User对象交给spring容器管理 -->
 	<!-- Bean元素:使用该元素描述需要spring容器管理的对象
 			class属性:被管理对象的完整类名.

@@ -23,10 +23,11 @@ public class Customer {
 	private String cust_name;
 	private String cust_source;
 	private String cust_industry;
-	private String cust_level;
 	private String cust_linkman;
 	private String cust_phone;
 	private String cust_mobile;
+	
+	private BaseDict  cust_level;
 	
 	private Set<LinkMan> linkMens =new HashSet<LinkMan>();
 	public Set<LinkMan> getLinkMens() {
@@ -59,10 +60,10 @@ public class Customer {
 	public void setCust_industry(String cust_industry) {
 		this.cust_industry = cust_industry;
 	}
-	public String getCust_level() {
+	public BaseDict getCust_level() {
 		return cust_level;
 	}
-	public void setCust_level(String cust_level) {
+	public void setCust_level(BaseDict cust_level) {
 		this.cust_level = cust_level;
 	}
 	public String getCust_linkman() {

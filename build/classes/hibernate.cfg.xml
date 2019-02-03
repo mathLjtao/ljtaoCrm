@@ -17,9 +17,10 @@
 		 <!-- 数据库驱动 -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		 <!-- 数据库url -->
-		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/ljtaocrm?useUnicode=true&amp;characterEncoding=utf8</property>
+		<!--   <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/ljtaocrm?useUnicode=true&amp;characterEncoding=utf8</property>-->
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/test1</property>
 		 <!-- 数据库连接用户名 -->
-		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.username">web_root</property>
 		 <!-- 数据库连接密码 -->
 		<property name="hibernate.connection.password">test</property>
 		<!-- 数据库方言
